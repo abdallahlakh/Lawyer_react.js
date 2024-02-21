@@ -1,17 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import { createRoot } from 'react-dom/client'; // Importing createRoot from react-dom/client
 import AdvancedSearch from './AdvancedSearch';
-import Images from './Images';
-import Navbar from './Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ViewDetails from './ViewDetails';
 
-ReactDOM.render(
+import './index.css';
+
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
-    <Navbar />
-    <div className="relative">
-      <AdvancedSearch />
-  
-    </div>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Router>
+                <Routes>
+                    <Route exact path="/advanced-search" element={<AdvancedSearch />} />
+                    <Route path="/advanced-search/view-details/:id" element={<ViewDetails />} />
+                </Routes>
+    </Router>
+    
+  </React.StrictMode>
 );
